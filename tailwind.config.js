@@ -1,0 +1,73 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "on-primary": "#ffffff",
+        "tertiary-fixed-dim": "#c3c6cf",
+        "surface-dim": "#dbdad6",
+        "on-secondary-fixed-variant": "#554431",
+        "inverse-surface": "#30312e",
+        "surface-container-highest": "#e4e2de",
+        "primary": "#875200",
+        "on-surface": "#1b1c1a",
+        "on-tertiary-container": "#2d3138",
+        "on-error-container": "#93000a",
+        "tertiary": "#5b5e66",
+        "error": "#ba1a1a",
+        "primary-fixed": "#ffddba",
+        "on-primary-fixed-variant": "#673d00",
+        "on-primary-fixed": "#2b1700",
+        "on-primary-container": "#4a2a00",
+        "surface-container-lowest": "#ffffff",
+        "background": "#fbf9f5",
+        "secondary": "#6e5b47",
+        "tertiary-container": "#9699a1",
+        "on-secondary-fixed": "#261909",
+        "error-container": "#ffdad6",
+        "secondary-fixed": "#f8dec5",
+        "on-surface-variant": "#524436",
+        "primary-fixed-dim": "#ffb867",
+        "surface-container": "#efeeea",
+        "on-tertiary": "#ffffff",
+        "secondary-container": "#f5dbc2",
+        "outline": "#857464",
+        "on-secondary": "#ffffff",
+        "tertiary-fixed": "#dfe2eb",
+        "surface-tint": "#875200",
+        "inverse-primary": "#ffb867",
+        "on-tertiary-fixed": "#181c22",
+        "surface": "#fbf9f5",
+        "inverse-on-surface": "#f2f0ed",
+        "surface-bright": "#fbf9f5",
+        "primary-container": "#d48924",
+        "secondary-fixed-dim": "#dbc2aa",
+        "surface-variant": "#e4e2de",
+        "surface-container-high": "#eae8e4",
+        "on-background": "#1b1c1a",
+        "on-secondary-container": "#725f4b",
+        "surface-container-low": "#f5f3ef",
+        "on-error": "#ffffff",
+        "outline-variant": "#d7c3b0",
+        "on-tertiary-fixed-variant": "#43474e"
+      },
+      borderRadius: {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      fontFamily: {
+        "headline": ["Noto Serif Oriya", "Noto Serif", "serif"],
+        "body": ["Noto Sans Oriya", "Inter", "sans-serif"],
+        "label": ["Noto Sans Oriya", "Inter", "sans-serif"]
+      }
+    },
+  },
+  plugins: [],
+}
