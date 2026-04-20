@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css'; // Optional but recommended
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -9,14 +11,24 @@ import Contact from './pages/Contact';
 
 const PageWrapper = ({ children }) => (
   <motion.div
-    initial={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
-    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-    exit={{ opacity: 0, scale: 1.02, filter: "blur(10px)" }}
+    initial={{ opacity: 0, scale: 0.98 }}
+    animate={{ opacity: 1, scale: 1 }}
+    exit={{ opacity: 0, scale: 1.02 }}
     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
   >
     {children}
   </motion.div>
 );
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
 
 function AppRoutes() {
   const location = useLocation();
@@ -35,12 +47,30 @@ function AppRoutes() {
 }
 
 function App() {
+  useEffect(() => {
+    // Initialize Lenis for buttery smooth scrolling
+    const lenis = new Lenis({
+      autoRaf: true,
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <Router>
+      <ScrollToTop />
       <AppRoutes />
     </Router>
   );
 }
 
 export default App;
-

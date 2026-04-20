@@ -15,6 +15,30 @@ const Navbar = () => {
     });
   }, [scrollY]);
 
+  const handleTranslate = (langCode) => {
+    let changed = false;
+    const select = document.querySelector('.goog-te-combo');
+    
+    if (select) {
+      select.value = langCode;
+      select.dispatchEvent(new Event('change'));
+      changed = true;
+      // Also try clicking the actual item if Event doesn't trigger Google's listener
+    }
+    
+    if (!changed || !select) {
+      // Robust Fallback: Set cookie and reload
+      if (langCode === 'or') {
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain=" + window.location.hostname + "; path=/;";
+      } else {
+        document.cookie = `googtrans=/or/${langCode}; path=/;`;
+        document.cookie = `googtrans=/or/${langCode}; domain=` + window.location.hostname + `; path=/;`;
+      }
+      window.location.reload();
+    }
+  };
+
   const links = [
     { name: 'ମୁଖ୍ୟ ପୃଷ୍ଠା', path: '/' },
     { name: 'ସେବା ସମୂହ', path: '/services' },
@@ -73,7 +97,23 @@ const Navbar = () => {
         </div>
 
         {/* Desktop CTA & Mobile Toggle */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+            className="flex-shrink-0"
+          >
+            <div className="flex items-center gap-2 bg-white/60 px-3 py-1.5 rounded-full border border-primary/20 shadow-sm mr-2">
+              <span className="material-symbols-outlined text-[1rem] text-primary">translate</span>
+              <button onClick={() => handleTranslate('en')} className="text-xs font-bold text-on-surface hover:text-primary transition-colors">EN</button>
+              <span className="text-primary/20 text-xs">|</span>
+              <button onClick={() => handleTranslate('hi')} className="text-xs font-bold text-on-surface hover:text-primary transition-colors">HI</button>
+              <span className="text-primary/20 text-xs">|</span>
+              <button onClick={() => handleTranslate('or')} className="text-xs font-bold text-on-surface hover:text-primary transition-colors title-odia">ଓଡି</button>
+            </div>
+          </motion.div>
+
           <motion.div
              initial={{ opacity: 0, x: 20 }}
              animate={{ opacity: 1, x: 0 }}

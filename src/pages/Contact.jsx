@@ -11,11 +11,10 @@ const Contact = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+    hidden: { opacity: 0, y: 30 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      filter: "blur(0px)",
       transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } 
     }
   };
@@ -52,77 +51,38 @@ const Contact = () => {
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7 bg-white/40 backdrop-blur-xl rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-2xl border border-white/20"
           >
-            <motion.form 
+            <motion.div 
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="space-y-8"
+              className="flex flex-col items-center justify-center text-center space-y-8 py-8 md:py-12"
             >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Name */}
-                <motion.div variants={itemVariants} className="group">
-                  <label className="block text-sm font-medium text-on-surface-variant mb-2 ml-1">Full Name | ପୂରା ନାମ</label>
-                  <input 
-                    className="w-full bg-transparent border-0 border-b border-outline-variant/30 focus:border-primary focus:ring-0 transition-colors py-4 px-1 text-lg" 
-                    placeholder="ଉଦାହରଣ: ରାଜେଶ କୁମାର" 
-                    type="text"
-                  />
-                </motion.div>
-                {/* Phone */}
-                <motion.div variants={itemVariants} className="group">
-                  <label className="block text-sm font-medium text-on-surface-variant mb-2 ml-1">Phone Number | ଫୋନ୍ ନମ୍ବର</label>
-                  <input 
-                    className="w-full bg-transparent border-0 border-b border-outline-variant/30 focus:border-primary focus:ring-0 transition-colors py-4 px-1 text-lg" 
-                    placeholder="+91 00000 00000" 
-                    type="tel"
-                  />
-                </motion.div>
+              <div className="bg-primary/10 w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center mb-2 shadow-inner border border-primary/20">
+                <span className="material-symbols-outlined text-5xl md:text-6xl text-primary drop-shadow-sm">location_on</span>
               </div>
-              <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* DOB */}
-                <div>
-                  <label className="block text-sm font-medium text-on-surface-variant mb-2 ml-1">ଜନ୍ମ ତାରିଖ</label>
-                  <input className="w-full bg-transparent border-0 border-b border-outline-variant/30 focus:border-primary focus:ring-0 transition-colors py-4 px-1" type="date"/>
+              
+              <div className="space-y-4">
+                <h2 className="text-4xl md:text-5xl font-bold font-headline text-on-surface leading-tight">ମାଆ ହର୍ଷମୁଖୀ ଜ୍ୟୋତିର୍ବିଦ୍ୟା</h2>
+                <h3 className="text-2xl md:text-3xl font-bold text-primary">ଅଜୟ ନାୟକ</h3>
+              </div>
+
+              <div className="w-32 h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent rounded-full mx-auto"></div>
+
+              <div className="space-y-8 text-on-surface-variant w-full">
+                <p className="text-xl md:text-2xl font-medium flex items-center justify-center gap-3">
+                  <span className="material-symbols-outlined text-primary/80 text-2xl">pin_drop</span>
+                  ଆଣ୍ଡେଇପଲ୍ଲି, ଭଦ୍ରକ, ଓଡ଼ିଶା - ୭୫୬୧୧୨
+                </p>
+                
+                <div className="bg-gradient-to-br from-white/60 to-white/30 border border-primary/20 rounded-[2rem] p-8 inline-block shadow-lg backdrop-blur-sm group hover:border-primary/50 transition-colors w-full md:w-auto">
+                  <p className="text-sm md:text-base mb-3 text-primary/80 uppercase tracking-[0.2em] font-bold">ସିଧାସଳଖ ଯୋଗାଯୋଗ</p>
+                  <a href="tel:7683853301" className="text-3xl md:text-5xl font-bold text-on-surface block hover:text-primary transition-colors">
+                    ୭୬୮୩୮୫୩୩୦୧
+                  </a>
                 </div>
-                {/* TOB */}
-                <div>
-                  <label className="block text-sm font-medium text-on-surface-variant mb-2 ml-1">ଜନ୍ମ ସମୟ</label>
-                  <input className="w-full bg-transparent border-0 border-b border-outline-variant/30 focus:border-primary focus:ring-0 transition-colors py-4 px-1" type="time"/>
-                </div>
-                {/* POB */}
-                <div>
-                  <label className="block text-sm font-medium text-on-surface-variant mb-2 ml-1">ଜନ୍ମ ସ୍ଥାନ</label>
-                  <input 
-                    className="w-full bg-transparent border-0 border-b border-outline-variant/30 focus:border-primary focus:ring-0 transition-colors py-4 px-1" 
-                    placeholder="ସହର, ରାଜ୍ୟ" 
-                    type="text"
-                  />
-                </div>
-              </motion.div>
-              {/* Message */}
-              <motion.div variants={itemVariants}>
-                <label className="block text-sm font-medium text-on-surface-variant mb-2 ml-1">Your Question or Message | ଆପଣଙ୍କର ପ୍ରଶ୍ନ</label>
-                <textarea 
-                  className="w-full bg-transparent border-0 border-b border-outline-variant/30 focus:border-primary focus:ring-0 transition-colors py-4 px-1 text-lg resize-none" 
-                  placeholder="ଗ୍ରହମାନେ ଆଜି ଆପଣଙ୍କୁ କିପରି ମାର୍ଗଦର୍ଶନ କରିପାରିବେ?" 
-                  rows="4"
-                ></textarea>
-              </motion.div>
-              <motion.button 
-                variants={itemVariants}
-                whileHover={{ 
-                  scale: 1.02, 
-                  boxShadow: "0 20px 40px -10px rgba(135, 82, 0, 0.3)",
-                  backgroundImage: "linear-gradient(to right, #875200, #ffb867)"
-                }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full md:w-auto px-12 py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-2xl font-bold text-lg shadow-xl transition-all duration-500" 
-                type="button"
-              >
-                ପରାମର୍ଶ ପାଇଁ ଅନୁରୋଧ କରନ୍ତୁ
-              </motion.button>
-            </motion.form>
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Info Sidebar Section */}

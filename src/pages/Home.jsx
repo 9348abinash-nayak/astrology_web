@@ -7,8 +7,8 @@ const SplitText = ({ children, className }) => {
       {children.split("").map((char, index) => (
         <motion.span
           key={index}
-          initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{
             delay: index * 0.05,
             duration: 0.8,
@@ -30,8 +30,8 @@ const SectionScrollReveal = ({ children }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-      animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
@@ -77,8 +77,8 @@ const Home = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
   };
 
   const { scrollYProgress } = useScroll();
@@ -131,21 +131,30 @@ const Home = () => {
         <motion.div variants={itemVariants} className="mb-8">
           <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase mb-4 block underline-offset-8">ଏକ ପବିତ୍ର ପଥ ଆପଣଙ୍କ ଅପେକ୍ଷାରେ</span>
           <motion.div variants={itemVariants} className="mb-4">
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent text-center">
-  ମା ହର୍ଷମୁଖୀ ଜ୍ୟୋତିଷ କାର୍ଯ୍ୟାଳୟ
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent text-center leading-tight tracking-wide pb-2">
+  ମା ହର୍ଷମୁଖୀ ଜ୍ୟୋତିର୍ବିଦ୍ୟା ଓ ପରାମର୍ଶ କେନ୍ଦ୍ର
 </h1>
           </motion.div>
-          <motion.p 
+          <motion.div 
             variants={itemVariants}
-            className="mt-4 text-sm md:text-base text-primary/80 font-medium flex items-center justify-center gap-2"
+            className="mt-6 flex flex-col items-center justify-center gap-1.5"
           >
-            <span className="material-symbols-outlined text-sm">location_on</span>
-            ଆଣ୍ଡେଇପଲ୍ଲି, ଭଦ୍ରକ, ଓଡିଶା - ୭୫୬୧୧୨,ମୋବାଇଲ୍: <GlowingNumber>୭୬୮୩୮୫୩୩୦୧</GlowingNumber>
-          </motion.p>
+            <div className="flex items-center justify-center gap-2 text-on-surface">
+              <span className="material-symbols-outlined text-primary text-xl">person</span>
+              <span className="text-2xl md:text-3xl font-bold font-headline">ଅଜୟ ନାୟକ</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-primary/80 text-sm md:text-base font-medium mt-1">
+              <span className="material-symbols-outlined text-sm">location_on</span>
+              <span>ଆଣ୍ଡେଇପଲ୍ଲି, ଭଦ୍ରକ, ଓଡ଼ିଶା - ୭୫୬୧୧୨</span>
+            </div>
+            <div className="flex items-center justify-center gap-2 text-primary/90 text-base font-medium mt-2">
+              ସମ୍ପର୍କ ନମ୍ବର: <GlowingNumber className="text-xl md:text-2xl font-bold font-sans tracking-wide ml-1">୭୬୮୩୮୫୩୩୦୧</GlowingNumber>
+            </div>
+          </motion.div>
         </motion.div>
 
-        <motion.h1 variants={itemVariants} className="text-6xl md:text-8xl font-headline text-on-surface mb-6 tracking-tight leading-none overflow-hidden">
-          ନିଜର <br/>
+        <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-headline text-on-surface mb-6 tracking-wide leading-[1.3] py-2 text-center text-balance mx-auto">
+          ଆପଣଙ୍କ ଭବିଷ୍ୟତର <br/>
           <motion.span 
             animate={{ 
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
@@ -158,9 +167,9 @@ const Home = () => {
               WebkitTextFillColor: 'transparent',
               filter: 'drop-shadow(0 2px 4px rgba(135, 82, 0, 0.2))'
             }}
-            className="italic font-serif font-bold"
+            className="font-serif font-bold tracking-wider"
           >
-            ଭାଗ୍ୟ ଜାଣନ୍ତୁ
+            ମାର୍ଗ ଜାଣନ୍ତୁ
           </motion.span>
         </motion.h1>
 
@@ -238,8 +247,8 @@ const Home = () => {
             <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase">ସୁବର୍ଣ୍ଣ ମାର୍ଗଦର୍ଶନ</span>
             <h2 className="text-3xl md:text-5xl font-headline font-bold text-on-surface">ଅଜୟ ନାୟକ </h2>
             <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed">(ଜ୍ୟୋତିଷ ଶାସ୍ତ୍ରରେ ସ୍ନାତକ (ବି.ଏ.))</p>
-            <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed">
-              ଦୀର୍ଘ ୨୫ ବର୍ଷରୁ ଅଧିକ ସମୟ ଧରି ଜ୍ୟୋତିଷ ଗବେଷଣା ଏବଂ ଗଭୀର ବୈଦିକ ଜ୍ଞାନ ମାଧ୍ୟମରେ, ପଣ୍ଡିତ ଜୀ ବିଶ୍ୱର ହଜାର ହଜାର ବ୍ୟକ୍ତିଙ୍କୁ ସେମାନଙ୍କର ପ୍ରକୃତ ଭାଗ୍ୟ ଚିହ୍ନିବାରେ ମାର୍ଗଦର୍ଶନ କରିଛନ୍ତି।
+            <p className="text-lg md:text-xl text-on-surface-variant font-light leading-loose text-justify tracking-wide">
+              ଦୀର୍ଘ ୨୫ ବର୍ଷରୁ ଊର୍ଦ୍ଧ୍ୱ ଅଭିଜ୍ଞତା, ନିରନ୍ତର ଜ୍ୟୋତିଷ ଗବେଷଣା ଓ ବୈଦିକ ଜ୍ଞାନର ଆଧାରରେ ପଣ୍ଡିତ ଜୀ ସୁଦୀର୍ଘ ସମୟ ଧରି ହଜାର ହଜାର ବ୍ୟକ୍ତିଙ୍କୁ ସେମାନଙ୍କର ପ୍ରକୃତ ଭାଗ୍ୟ ଚିହ୍ନିବାରେ ଏବଂ ସଠିକ୍ ଜୀବନ ପଥ ବାଛିବାରେ ଅତ୍ୟନ୍ତ ବିଶ୍ୱସ୍ତ ମାର୍ଗଦର୍ଶନ ପ୍ରଦାନ କରିଆସୁଛନ୍ତି।
             </p>
             
             <div className="pt-4 space-y-4">
@@ -256,7 +265,7 @@ const Home = () => {
               <div className="flex items-center gap-4 group cursor-pointer font-headline">
                  <button className="flex-1 bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 px-8 rounded-2xl font-bold text-lg shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-3">
                     <span className="material-symbols-outlined">chat</span>
-                    ଏବେ ଯୋଗାଯୋଗ କରନ୍ତୁ
+                    ଆଜି ହିଁ ପରାମର୍ଶ କରନ୍ତୁ
                  </button>
               </div>
             </div>
@@ -271,13 +280,14 @@ const Home = () => {
           <div className="max-w-7xl mx-auto px-8">
             <div className="text-center mb-12 md:mb-16">
               <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase mb-4 block">ଦିବ୍ୟ ଜ୍ୟୋତିଷ ସେବା</span>
-              <h2 className="text-3xl md:text-5xl font-headline font-bold">ସମ୍ପୂର୍ଣ୍ଣ ଆଧ୍ୟାତ୍ମିକ ଓ ଜ୍ୟୋତିଷ ପରାମର୍ଶ</h2>
+              <h2 className="text-3xl md:text-5xl font-headline font-bold leading-tight tracking-wide">ସର୍ବୋତ୍ତମ ଆଧ୍ୟାତ୍ମିକ ଓ ଜ୍ୟୋତିର୍ବିଜ୍ଞାନ ସେବା</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 max-w-5xl mx-auto">
           {[
-            { icon: 'storm', title: 'କୁଣ୍ଡଳୀ ବିଶ୍ଳେଷଣ', desc: "ଆପଣଙ୍କ କୁଣ୍ଡଳୀର ଗଭୀର ଅନୁଧ୍ୟାନ କରି ଜୀବନର କର୍ମଫଳ ବିଷୟରେ ଜାଣନ୍ତୁ।" },
-            { icon: 'diamond', title: 'ରତ୍ନ ପରାମର୍ଶ', desc: 'ଗ୍ରହମାନଙ୍କ ପ୍ରଭାବକୁ ସନ୍ତୁଳିତ କରିବା ପାଇଁ ସଠିକ୍ ରତ୍ନର ପରାମର୍ଶ।' },
-            { icon: 'calendar_month', title: 'ଶୁଭ ମୁହୂର୍ତ୍ତ', desc: 'ସଫଳତା ଏବଂ ସମୃଦ୍ଧି ପାଇଁ ଶୁଭ ସମୟର ସଠିକ୍ ନିର୍ଣ୍ଣୟ।' }
+            { icon: 'storm', title: 'କୁଣ୍ଡଳୀ ବିଶ୍ଳେଷଣ', desc: 'ଆପଣଙ୍କ ଜନ୍ମ କୁଣ୍ଡଳୀର ବିସ୍ତୃତ ଅନୁଧ୍ୟାନ ମାଧ୍ୟମରେ କର୍ମ ତଥା ଭବିଷ୍ୟତର ଫଳାଫଳ ବିଷୟରେ ସଠିକ୍ ଜ୍ଞାନ ଲାଭ କରନ୍ତୁ।' },
+            { icon: 'diamond', title: 'ରତ୍ନ ପରାମର୍ଶ', desc: 'ଗ୍ରହମାନଙ୍କ ପ୍ରତିକୂଳ ପ୍ରଭାବକୁ ନିୟନ୍ତ୍ରଣ କରି ପରିବାରରେ ସୁଖ ଓ ସମୃଦ୍ଧି ଆଣିବା ପାଇଁ ଉପଯୁକ୍ତ ରତ୍ନ ଧାରଣ ପରାମର୍ଶ।' },
+            { icon: 'calendar_month', title: 'ଶୁଭ ମୁହୂର୍ତ୍ତ', desc: 'କୌଣସି ନୂତନ ଏବଂ ମାଙ୍ଗଳିକ କାର୍ଯ୍ୟର ସଫଳତା ପାଇଁ ଶାସ୍ତ୍ରୋକ୍ତ ସଠିକ୍ ତିଥି ଏବଂ ମୁହୂର୍ତ୍ତ ନିର୍ଦ୍ଧାରଣ।' },
+            { icon: 'foundation', title: 'ଗୃହ ବନ୍ଧା ବାସ୍ତୁ ପୂଜା', desc: 'ନୂତନ ଗୃହ ନିର୍ମାଣ ବା ପ୍ରବେଶ ପୂର୍ବରୁ ବାସ୍ତୁ ଦୋଷ ନିବାରଣ ଏବଂ ପରିବାରର ଚିରସ୍ଥାୟୀ ସୁଖଶାନ୍ତି ପାଇଁ ଆବଶ୍ୟକୀୟ ପୂଜା ବିଧି।' }
           ].map((item, idx) => (
             <motion.div 
               key={idx}
