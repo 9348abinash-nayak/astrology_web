@@ -44,7 +44,7 @@ const Services = () => {
   };
 
   return (
-    <main className="pt-32 pb-20 px-6 max-w-7xl mx-auto">
+    <main className="pt-32 md:pt-40 pb-20 px-6 max-w-7xl mx-auto">
       {/* Hero Heading */}
       <motion.header 
         initial={{ opacity: 0, y: 30 }}
@@ -60,7 +60,7 @@ const Services = () => {
           ଦିବ୍ୟ ଅନୁଭୂତି
         </motion.div>
         <h1 className="text-4xl md:text-7xl font-bold text-on-surface leading-tight max-w-4xl font-headline">
-          ଗ୍ରହ ନକ୍ଷତ୍ରର ଆଲୋକରେ ନିଜ ଜୀବନ <br/>ପଥକୁ <motion.span 
+          ଗ୍ରହ ନକ୍ଷେତ୍ର ଆଲୋକରେ ନିଜ ଜୀବନ <br/>ପଥକୁ <motion.span 
             animate={{ opacity: [0.6, 1, 0.6] }}
             transition={{ duration: 3, repeat: Infinity }}
             className="text-primary italic"

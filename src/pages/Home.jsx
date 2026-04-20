@@ -1,6 +1,9 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import ajaya from "../assets/ajaya.png"
+import { useLanguage } from '../App';
+import HoroscopeSection from '../components/HoroscopeSection';
+
 const SplitText = ({ children, className }) => {
   return (
     <span className={className}>
@@ -41,7 +44,7 @@ const SectionScrollReveal = ({ children }) => {
 
 const GlowingNumber = ({ children, className = "" }) => (
   <motion.span
-    animate={{ 
+    animate={{
       backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
       filter: [
         'drop-shadow(0 0 2px rgba(212, 137, 36, 0.4))',
@@ -49,12 +52,12 @@ const GlowingNumber = ({ children, className = "" }) => (
         'drop-shadow(0 0 2px rgba(212, 137, 36, 0.4))'
       ]
     }}
-    transition={{ 
-      duration: 3, 
-      repeat: Infinity, 
-      ease: "linear" 
+    transition={{
+      duration: 3,
+      repeat: Infinity,
+      ease: "linear"
     }}
-    style={{ 
+    style={{
       backgroundImage: 'linear-gradient(90deg, #875200, #d48924, #ffb867, #d48924, #875200)',
       backgroundSize: '200% auto',
       WebkitBackgroundClip: 'text',
@@ -68,9 +71,10 @@ const GlowingNumber = ({ children, className = "" }) => (
 );
 
 const Home = () => {
+  const { lang, t } = useLanguage();
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: { staggerChildren: 0.1, delayChildren: 0.3 }
     }
@@ -89,17 +93,17 @@ const Home = () => {
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
       {/* Celestial Background Elements */}
-      <motion.div 
+      <motion.div
         animate={{ opacity: [0.05, 0.1, 0.05], scale: [1, 1.05, 1] }}
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
         className="absolute inset-0 celestial-glow"
       ></motion.div>
       <div className="absolute inset-0 grain-texture"></div>
-      
+
       {/* Decorative Star Accents with Parallax */}
-      <motion.div 
+      <motion.div
         style={{ y: smoothY }}
-        animate={{ 
+        animate={{
           rotate: [0, 15, 0],
           opacity: [0.1, 0.3, 0.1]
         }}
@@ -108,10 +112,10 @@ const Home = () => {
       >
         <span className="material-symbols-outlined text-primary text-6xl">star</span>
       </motion.div>
-      
-      <motion.div 
+
+      <motion.div
         style={{ y: useSpring(useTransform(scrollYProgress, [0, 1], [0, -300])) }}
-        animate={{ 
+        animate={{
           rotate: [0, -15, 0],
           opacity: [0.1, 0.2, 0.1]
         }}
@@ -122,90 +126,97 @@ const Home = () => {
       </motion.div>
 
       {/* Hero Content Section */}
-      <motion.section 
+      <motion.section
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center pt-20"
+        className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center pt-32 md:pt-48"
       >
         <motion.div variants={itemVariants} className="mb-8">
-          <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase mb-4 block underline-offset-8">ଏକ ପବିତ୍ର ପଥ ଆପଣଙ୍କ ଅପେକ୍ଷାରେ</span>
+          <div className="w-16 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6 rounded-full shadow-[0_0_8px_rgba(135,82,0,0.4)]"></div>
+          <span className="text-primary font-bold tracking-[0.25em] text-sm md:text-base uppercase mb-4 block drop-shadow-sm font-headline text-center">
+            {t.hero.branding}
+          </span>
           <motion.div variants={itemVariants} className="mb-4">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent text-center leading-tight tracking-wide pb-2">
-  ମା ହର୍ଷମୁଖୀ ଜ୍ୟୋତିର୍ବିଦ୍ୟା ଓ ପରାମର୍ଶ କେନ୍ଦ୍ର
-</h1>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent text-center">
+              {t.hero.title}
+            </h1>
           </motion.div>
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="mt-6 flex flex-col items-center justify-center gap-1.5"
           >
             <div className="flex items-center justify-center gap-2 text-on-surface">
               <span className="material-symbols-outlined text-primary text-xl">person</span>
-              <span className="text-2xl md:text-3xl font-bold font-headline">ଅଜୟ ନାୟକ</span>
+              <span className="text-2xl md:text-3xl font-bold font-headline">{t.hero.name}</span>
             </div>
             <div className="flex items-center justify-center gap-2 text-primary/80 text-sm md:text-base font-medium mt-1">
               <span className="material-symbols-outlined text-sm">location_on</span>
-              <span>ଆଣ୍ଡେଇପଲ୍ଲି, ଭଦ୍ରକ, ଓଡ଼ିଶା - ୭୫୬୧୧୨</span>
+              <span>{t.hero.location} - ୭୫୬୧୧୨</span>
             </div>
             <div className="flex items-center justify-center gap-2 text-primary/90 text-base font-medium mt-2">
-              ସମ୍ପର୍କ ନମ୍ବର: <GlowingNumber className="text-xl md:text-2xl font-bold font-sans tracking-wide ml-1">୭୬୮୩୮୫୩୩୦୧</GlowingNumber>
+              {t.hero.phone}: <GlowingNumber className="text-xl md:text-2xl font-bold">୭୬୮୩୮୫୩୩୦୧</GlowingNumber>
             </div>
           </motion.div>
         </motion.div>
 
-        <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-headline text-on-surface mb-6 tracking-wide leading-[1.3] py-2 text-center text-balance mx-auto">
-          ଆପଣଙ୍କ ଭବିଷ୍ୟତର <br/>
-          <motion.span 
-            animate={{ 
+        <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-headline text-on-surface mb-6 tracking-tight leading-normal py-2">
+          {lang === 'en' ? 'Know Your' : lang === 'hi' ? 'अपना' : 'ନିଜର'} <br />
+          <motion.span
+            animate={{
               backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
             }}
             transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-            style={{ 
+            style={{
               backgroundImage: 'linear-gradient(90deg, #5d3900, #875200, #d48924, #875200, #5d3900)',
               backgroundSize: '200% auto',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
               filter: 'drop-shadow(0 2px 4px rgba(135, 82, 0, 0.2))'
             }}
-            className="font-serif font-bold tracking-wider"
+            className="italic font-serif font-bold"
           >
-            ମାର୍ଗ ଜାଣନ୍ତୁ
+            {lang === 'en' ? 'Destiny' : lang === 'hi' ? 'भाग्य जानें' : 'ଭାଗ୍ୟ ଜାଣନ୍ତୁ'}
           </motion.span>
         </motion.h1>
 
         <motion.p variants={itemVariants} className="text-xl md:text-2xl text-secondary font-light max-w-2xl mb-12 leading-relaxed">
-          ଶାଶ୍ୱତ ଜ୍ଞାନ <span className="mx-4 text-outline-variant">|</span> ବିଶ୍ୱାସନୀୟ ମାର୍ଗଦର୍ଶନ
+          {t.hero.subtitle}
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 md:gap-6 items-center w-full sm:w-auto">
-          <motion.button 
+          <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="w-full sm:w-auto group relative px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full text-base md:text-lg font-semibold shadow-lg transition-all"
           >
-            ଆମ ସହ ଯୋଡ଼ି ହୁଅନ୍ତୁ
+            {t.hero.btnJoin}
           </motion.button>
-          <motion.button 
+          <motion.button
             whileHover={{ x: 5 }}
+            onClick={() => {
+              const element = document.getElementById('horoscope');
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}
             className="px-8 md:px-10 py-4 md:py-5 text-on-surface-variant font-medium hover:text-primary transition-colors flex items-center gap-2"
           >
-            ରାଶିଫଳ ଦେଖନ୍ତୁ
+            {t.hero.btnRashifal}
             <span className="material-symbols-outlined">arrow_right_alt</span>
           </motion.button>
         </motion.div>
       </motion.section>
 
       {/* Floating Abstract Element */}
-      <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
           scale: [1, 1.2, 1],
           opacity: [0.2, 0.3, 0.2]
         }}
         transition={{ duration: 15, repeat: Infinity }}
         className="absolute -bottom-20 -left-20 w-96 h-96 bg-surface-container-low rounded-full mix-blend-multiply filter blur-3xl"
       ></motion.div>
-        <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.1, 0.2, 0.1]
         }}
@@ -221,56 +232,56 @@ const Home = () => {
               style={{ y: yParallaxSlow }}
               className="relative"
             >
-            <div className="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl"></div>
-            <div className="relative aspect-square md:aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white/50 shadow-xl">
-              <img 
-                src={ajaya} 
-                alt="Pandit Shrimant Jagannath" 
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <motion.div 
-              animate={{ rotate: 360 }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-              className="absolute -bottom-8 -right-8 w-24 h-24 bg-primary rounded-full flex items-center justify-center text-on-primary border-4 border-white shadow-lg"
-            >
-              <span className="material-symbols-outlined text-4xl">verified_user</span>
+              <div className="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl"></div>
+              <div className="relative aspect-square md:aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white/50 shadow-xl">
+                <img
+                  src={ajaya}
+                  alt={t.profile.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                className="absolute -bottom-8 -right-8 w-24 h-24 bg-primary rounded-full flex items-center justify-center text-on-primary border-4 border-white shadow-lg"
+              >
+                <span className="material-symbols-outlined text-4xl">verified_user</span>
+              </motion.div>
             </motion.div>
-          </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-6"
-          >
-            <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase">ସୁବର୍ଣ୍ଣ ମାର୍ଗଦର୍ଶନ</span>
-            <h2 className="text-3xl md:text-5xl font-headline font-bold text-on-surface">ଅଜୟ ନାୟକ </h2>
-            <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed">(ଜ୍ୟୋତିଷ ଶାସ୍ତ୍ରରେ ସ୍ନାତକ (ବି.ଏ.))</p>
-            <p className="text-lg md:text-xl text-on-surface-variant font-light leading-loose text-justify tracking-wide">
-              ଦୀର୍ଘ ୨୫ ବର୍ଷରୁ ଊର୍ଦ୍ଧ୍ୱ ଅଭିଜ୍ଞତା, ନିରନ୍ତର ଜ୍ୟୋତିଷ ଗବେଷଣା ଓ ବୈଦିକ ଜ୍ଞାନର ଆଧାରରେ ପଣ୍ଡିତ ଜୀ ସୁଦୀର୍ଘ ସମୟ ଧରି ହଜାର ହଜାର ବ୍ୟକ୍ତିଙ୍କୁ ସେମାନଙ୍କର ପ୍ରକୃତ ଭାଗ୍ୟ ଚିହ୍ନିବାରେ ଏବଂ ସଠିକ୍ ଜୀବନ ପଥ ବାଛିବାରେ ଅତ୍ୟନ୍ତ ବିଶ୍ୱସ୍ତ ମାର୍ଗଦର୍ଶନ ପ୍ରଦାନ କରିଆସୁଛନ୍ତି।
-            </p>
-            
-            <div className="pt-4 space-y-4">
-              <div className="flex items-center gap-4 group cursor-pointer hover:bg-white/50 p-4 rounded-2xl transition-all">
-                <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
-                  <span className="material-symbols-outlined">call</span>
-                </div>
-                <div>
-                  <p className="text-xs uppercase tracking-widest text-secondary opacity-70">ସିଧାସଳଖ ପରାମର୍ଶ</p>
-                  <p className="text-xl font-bold font-headline"><GlowingNumber className="text-2xl">+91 7683853301</GlowingNumber></p>
-                </div>
-              </div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase">{t.profile.badge}</span>
+              <h2 className="text-3xl md:text-5xl font-headline font-bold text-on-surface">{t.profile.name} </h2>
+              <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed">{t.profile.degree}</p>
+              <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed">
+                {t.profile.bio}
+              </p>
 
-              <div className="flex items-center gap-4 group cursor-pointer font-headline">
-                 <button className="flex-1 bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 px-8 rounded-2xl font-bold text-lg shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-3">
+              <div className="pt-4 space-y-4">
+                <div className="flex items-center gap-4 group cursor-pointer hover:bg-white/50 p-4 rounded-2xl transition-all">
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+                    <span className="material-symbols-outlined">call</span>
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-secondary opacity-70">{t.profile.directContact}</p>
+                    <p className="text-xl font-bold font-headline"><GlowingNumber className="text-2xl">+91 7683853301</GlowingNumber></p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-4 group cursor-pointer font-headline w-full">
+                  <button className="flex-1 bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 px-8 rounded-2xl font-bold text-lg shadow-lg hover:shadow-primary/20 transition-all flex items-center justify-center gap-3">
                     <span className="material-symbols-outlined">chat</span>
-                    ଆଜି ହିଁ ପରାମର୍ଶ କରନ୍ତୁ
-                 </button>
+                    {t.profile.btnContact}
+                  </button>
+                </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
+          </div>
         </SectionScrollReveal>
       </section>
 
@@ -279,41 +290,71 @@ const Home = () => {
         <SectionScrollReveal>
           <div className="max-w-7xl mx-auto px-8">
             <div className="text-center mb-12 md:mb-16">
-              <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase mb-4 block">ଦିବ୍ୟ ଜ୍ୟୋତିଷ ସେବା</span>
-              <h2 className="text-3xl md:text-5xl font-headline font-bold leading-tight tracking-wide">ସର୍ବୋତ୍ତମ ଆଧ୍ୟାତ୍ମିକ ଓ ଜ୍ୟୋତିର୍ବିଜ୍ଞାନ ସେବା</h2>
+              <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase mb-4 block">{t.services.badge}</span>
+              <h2 className="text-3xl md:text-5xl font-headline font-bold">{t.services.title}</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 max-w-5xl mx-auto">
-          {[
-            { icon: 'storm', title: 'କୁଣ୍ଡଳୀ ବିଶ୍ଳେଷଣ', desc: 'ଆପଣଙ୍କ ଜନ୍ମ କୁଣ୍ଡଳୀର ବିସ୍ତୃତ ଅନୁଧ୍ୟାନ ମାଧ୍ୟମରେ କର୍ମ ତଥା ଭବିଷ୍ୟତର ଫଳାଫଳ ବିଷୟରେ ସଠିକ୍ ଜ୍ଞାନ ଲାଭ କରନ୍ତୁ।' },
-            { icon: 'diamond', title: 'ରତ୍ନ ପରାମର୍ଶ', desc: 'ଗ୍ରହମାନଙ୍କ ପ୍ରତିକୂଳ ପ୍ରଭାବକୁ ନିୟନ୍ତ୍ରଣ କରି ପରିବାରରେ ସୁଖ ଓ ସମୃଦ୍ଧି ଆଣିବା ପାଇଁ ଉପଯୁକ୍ତ ରତ୍ନ ଧାରଣ ପରାମର୍ଶ।' },
-            { icon: 'calendar_month', title: 'ଶୁଭ ମୁହୂର୍ତ୍ତ', desc: 'କୌଣସି ନୂତନ ଏବଂ ମାଙ୍ଗଳିକ କାର୍ଯ୍ୟର ସଫଳତା ପାଇଁ ଶାସ୍ତ୍ରୋକ୍ତ ସଠିକ୍ ତିଥି ଏବଂ ମୁହୂର୍ତ୍ତ ନିର୍ଦ୍ଧାରଣ।' },
-            { icon: 'foundation', title: 'ଗୃହ ବନ୍ଧା ବାସ୍ତୁ ପୂଜା', desc: 'ନୂତନ ଗୃହ ନିର୍ମାଣ ବା ପ୍ରବେଶ ପୂର୍ବରୁ ବାସ୍ତୁ ଦୋଷ ନିବାରଣ ଏବଂ ପରିବାରର ଚିରସ୍ଥାୟୀ ସୁଖଶାନ୍ତି ପାଇଁ ଆବଶ୍ୟକୀୟ ପୂଜା ବିଧି।' }
-          ].map((item, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.2, duration: 0.8 }}
-              whileHover={{ y: -10, boxShadow: "0 25px 50px -12px rgb(0 0 0 / 0.1)" }}
-              className="bg-surface-container-lowest p-10 rounded-xl flex flex-col gap-4 group transition-all"
-            >
-              <motion.span 
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.6 }}
-                className="material-symbols-outlined text-primary text-4xl"
-              >{item.icon}</motion.span>
-              <h3 className="text-2xl font-headline font-bold">{item.title}</h3>
-              <p className="text-on-surface-variant leading-relaxed">{item.desc}</p>
-            </motion.div>
-          ))}
+              {t.services.items.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{
+                    delay: idx * 0.1,
+                    duration: 0.8,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  whileHover={{
+                    y: -15,
+                    scale: 1.02,
+                    rotateX: 2,
+                    rotateY: -2,
+                    transition: { duration: 0.4 }
+                  }}
+                  className="group relative bg-white/40 backdrop-blur-md p-10 rounded-3xl flex flex-col gap-5 transition-all border border-white/20 shadow-xl overflow-hidden cursor-pointer"
+                >
+                  {/* Hover Glow Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  />
+
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+                    <motion.div
+                      initial={{ left: '-150%', skewX: -45 }}
+                      whileHover={{ left: '150%' }}
+                      transition={{ duration: 0.8, ease: "easeInOut" }}
+                      className="absolute top-0 w-32 h-full bg-white/20 blur-xl"
+                    />
+                  </div>
+
+                  <div className="relative z-10">
+                    <motion.div
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-2"
+                    >
+                      <span className="material-symbols-outlined text-primary text-4xl">{item.icon}</span>
+                    </motion.div>
+                    <h3 className="text-2xl font-headline font-bold text-on-surface mb-2 tracking-tight">{item.title}</h3>
+                    <p className="text-on-surface-variant leading-relaxed text-lg font-light">{item.desc}</p>
+                  </div>
+
+                  {/* Corner Accent */}
+                  <div className="absolute top-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="material-symbols-outlined text-primary/30">auto_awesome</span>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </SectionScrollReveal>
       </section>
+
+      {/* Horoscope Section */}
+      <HoroscopeSection />
     </div>
   );
 };
 
 export default Home;
-

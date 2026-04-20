@@ -20,7 +20,7 @@ const Contact = () => {
   };
 
   return (
-    <main className="pt-32 pb-20 min-h-screen">
+    <main className="pt-32 md:pt-40 pb-20 min-h-screen">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Page Header */}
         <motion.div 
@@ -63,7 +63,7 @@ const Contact = () => {
               </div>
               
               <div className="space-y-4">
-                <h2 className="text-4xl md:text-5xl font-bold font-headline text-on-surface leading-tight">ମାଆ ହର୍ଷମୁଖୀ ଜ୍ୟୋତିର୍ବିଦ୍ୟା</h2>
+                <h2 className="text-4xl md:text-5xl font-bold font-headline text-on-surface leading-tight">ମା ହର୍ଷମୁଖୀ ଜ୍ୟୋତିର୍ବିଦ୍ୟା</h2>
                 <h3 className="text-2xl md:text-3xl font-bold text-primary">ଅଜୟ ନାୟକ</h3>
               </div>
 
@@ -72,7 +72,7 @@ const Contact = () => {
               <div className="space-y-8 text-on-surface-variant w-full">
                 <p className="text-xl md:text-2xl font-medium flex items-center justify-center gap-3">
                   <span className="material-symbols-outlined text-primary/80 text-2xl">pin_drop</span>
-                  ଆଣ୍ଡେଇପଲ୍ଲି, ଭଦ୍ରକ, ଓଡ଼ିଶା - ୭୫୬୧୧୨
+                  ଅଣ୍ଢେଇପଲ୍ଲୀ, ଭଦ୍ରକ, ଓଡ଼ିଶା - ୭୫୬୧୧୨
                 </p>
                 
                 <div className="bg-gradient-to-br from-white/60 to-white/30 border border-primary/20 rounded-[2rem] p-8 inline-block shadow-lg backdrop-blur-sm group hover:border-primary/50 transition-colors w-full md:w-auto">
@@ -180,7 +180,7 @@ const Contact = () => {
                   className="bg-white px-6 py-3 rounded-full shadow-lg flex items-center gap-2"
                 >
                   <span className="material-symbols-outlined text-primary">location_on</span>
-                  <span className="font-medium">ଆଣ୍ଡେଇପଲ୍ଲି, ଭଦ୍ରକ, ଓଡିଶା</span>
+                  <span className="font-medium">ଅଣ୍ଢେଇପଲ୍ଲୀ, ଭଦ୍ରକ, ଓଡିଶା</span>
                 </motion.div>
               </div>
             </motion.div>

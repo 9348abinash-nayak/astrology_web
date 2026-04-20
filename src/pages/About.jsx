@@ -1,5 +1,5 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import image from '../assets/ajaya.png';
 const About = () => {
   const fadeInVariants = {
@@ -13,7 +13,7 @@ const About = () => {
   };
 
   return (
-    <main className="pt-32 pb-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
+    <main className="pt-32 md:pt-40 pb-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         {/* Left Column: Image */}
         <motion.div
@@ -142,16 +142,17 @@ const About = () => {
             animate="visible"
             className="pt-8"
           >
-            <motion.a
+            <motion.div
               whileHover={{ x: 10 }}
-              className="inline-flex items-center gap-4 group"
-              href="#"
+              className="inline-flex items-center gap-4 group cursor-pointer"
             >
-              <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-on-primary transition-transform group-hover:scale-110">
-                <span className="material-symbols-outlined">arrow_forward</span>
-              </div>
-              <span className="font-semibold text-lg group-hover:text-primary transition-colors">ଆମ ସହ ଯୋଗାଯୋଗ କରନ୍ତୁ</span>
-            </motion.a>
+              <Link to="/contact" className="inline-flex items-center gap-4">
+                <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-on-primary transition-transform group-hover:scale-110">
+                  <span className="material-symbols-outlined">arrow_forward</span>
+                </div>
+                <span className="font-semibold text-lg group-hover:text-primary transition-colors">ଆମ ସହ ଯୋଗାଯୋଗ କରନ୍ତୁ</span>
+              </Link>
+            </motion.div>
           </motion.div>
         </div>
       </div>
