@@ -89,9 +89,9 @@ body { top: 0 !important; }
 }
 
 .animate-celestial-rotate {
-  animation: celestial-rotate 40s linear infinite;
+  animation: celestial-rotate 30s linear infinite;
 }
 
 .animate-celestial-rotate-reverse {
-  animation: celestial-rotate-reverse 40s linear infinite;
+  animation: celestial-rotate-reverse 30s linear infinite;
 }
