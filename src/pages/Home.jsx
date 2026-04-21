@@ -134,8 +134,8 @@ const Home = () => {
             <span className="text-primary font-bold tracking-[0.25em] text-sm md:text-base uppercase mb-4 block drop-shadow-sm font-headline lg:text-left text-center w-full">
               {t.hero.branding}
             </span>
-            <motion.div variants={itemVariants} className="mb-4 w-full py-2">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent lg:text-left text-center leading-[1.1] pb-2">
+            <motion.div variants={itemVariants} className="mb-4 w-full py-4">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent lg:text-left text-center leading-[1.25] pb-3">
                 {t.hero.title}
               </h1>
             </motion.div>
@@ -147,17 +147,17 @@ const Home = () => {
                 <span className="material-symbols-outlined text-primary text-xl">person</span>
                 <span className="text-2xl md:text-3xl font-bold font-headline">{t.hero.name}</span>
               </div>
-              <div className="flex items-center gap-2 text-primary/80 text-sm md:text-base font-medium mt-1">
+              <div className="flex items-center gap-2 text-primary/80 text-sm md:text-base font-medium mt-2 leading-relaxed">
                 <span className="material-symbols-outlined text-sm">location_on</span>
                 <span>{t.hero.location} - ୭୫୬୧୧୨</span>
               </div>
-              <div className="flex items-center gap-2 text-primary/90 text-base font-medium mt-2">
+              <div className="flex items-center gap-2 text-primary/90 text-base font-medium mt-3 leading-relaxed">
                 {t.hero.phone}: <GlowingNumber className="text-xl md:text-2xl font-bold">୭୬୮୩୮୫୩୩୦୧</GlowingNumber>
               </div>
             </motion.div>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-headline text-on-surface mb-6 tracking-tight leading-[1.3] py-2 lg:text-left text-center w-full">
+          <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-headline text-on-surface mb-8 tracking-normal leading-[1.4] py-4 lg:text-left text-center w-full">
             {lang === 'en' ? 'Know Your' : lang === 'hi' ? 'अपना' : 'ନିଜର'} <br className="hidden lg:block" />
             <motion.span
               animate={{
@@ -259,7 +259,7 @@ const Home = () => {
               className="space-y-6"
             >
               <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase">{t.profile.badge}</span>
-              <h2 className="text-3xl md:text-5xl font-headline font-bold text-on-surface">{t.profile.name} </h2>
+              <h2 className="text-3xl md:text-5xl font-headline font-bold text-on-surface leading-[1.3] py-2">{t.profile.name} </h2>
               <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed">{t.profile.degree}</p>
               <p className="text-lg md:text-xl text-on-surface-variant font-light leading-relaxed">
                 {t.profile.bio}

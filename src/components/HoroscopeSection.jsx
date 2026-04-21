@@ -145,7 +145,7 @@ const HoroscopeSection = () => {
               >
                 <path d={sign.path} />
               </svg>
-              <span className="text-xs font-bold uppercase tracking-tighter">
+              <span className="text-[0.65rem] md:text-xs font-bold uppercase tracking-normal mt-1 text-center leading-tight">
                 {lang === 'or' ? sign.or : lang === 'hi' ? sign.hi : sign.en}
               </span>
             </motion.button>
@@ -229,9 +229,9 @@ const HoroscopeSection = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   <div className="md:col-span-2 space-y-6">
-                    <p className="text-xl leading-relaxed text-on-surface italic font-serif">
-                      "{horoscope.description}"
-                    </p>
+                    <p className="text-lg md:text-xl leading-relaxed text-on-surface italic font-serif py-2">
+                       "{horoscope.description}"
+                     </p>
                     <div className="p-6 bg-primary/5 rounded-2xl border border-primary/10">
                       <p className="text-sm uppercase tracking-widest text-primary font-bold mb-2">Mood / ମନୋଭାବ</p>
                       <p className="text-xl font-headline font-semibold text-on-surface">{horoscope.mood}</p>
