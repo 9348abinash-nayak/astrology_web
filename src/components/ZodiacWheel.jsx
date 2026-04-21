@@ -36,10 +36,10 @@ const ZodiacWheel = () => {
     <div className="relative w-[300px] h-[300px] md:w-[500px] md:h-[500px] flex items-center justify-center pointer-events-none select-none">
       {/* Outer Glow - Simplified */}
       <motion.div
-        animate={radius > 120 ? {
+        animate={{
           scale: [1, 1.1, 1],
           opacity: [0.3, 0.5, 0.3],
-        } : {}}
+        }}
         transition={{
           duration: 6,
           repeat: Infinity,
@@ -49,15 +49,9 @@ const ZodiacWheel = () => {
       />
 
       {/* Rotating Wheel */}
-      <motion.div
-        animate={radius > 120 ? { rotate: 360 } : {}}
-        transition={{
-          duration: 40,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+      <div
         style={{ willChange: 'transform', transformZ: 0 }}
-        className="relative w-full h-full border-2 border-primary/20 rounded-full flex items-center justify-center"
+        className="relative w-full h-full border-2 border-primary/20 rounded-full flex items-center justify-center animate-celestial-rotate"
       >
         {/* Inner Rings */}
         <div className="absolute inset-4 border border-primary/10 rounded-full" />
@@ -74,24 +68,18 @@ const ZodiacWheel = () => {
                 transform: `rotate(${angle}deg) translateY(-${radius}px)`,
               }}
             >
-              <motion.div
-                animate={radius > 120 ? { rotate: -360 - angle } : { rotate: -angle }}
-                transition={{
-                  duration: 40,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
+              <div
                 style={{ willChange: 'transform', transformZ: 0 }}
-                className="text-2xl md:text-3xl lg:text-4xl text-primary flex items-center justify-center w-10 h-10"
+                className="text-2xl md:text-3xl lg:text-4xl text-primary flex items-center justify-center w-10 h-10 animate-celestial-rotate-reverse"
               >
                 <span style={{ filter: 'drop-shadow(0 0 6px rgba(212, 137, 36, 0.6))', fontFamily: 'serif' }}>
                   {sign.symbol + '\uFE0E'}
                 </span>
-              </motion.div>
+              </div>
             </div>
           );
         })}
-      </motion.div>
+      </div>
 
       {/* Central Element */}
       <div

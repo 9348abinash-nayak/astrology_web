@@ -77,3 +77,21 @@ body { top: 0 !important; }
 .lenis-smooth {
   will-change: transform;
 }
+
+@keyframes celestial-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes celestial-rotate-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+.animate-celestial-rotate {
+  animation: celestial-rotate 40s linear infinite;
+}
+
+.animate-celestial-rotate-reverse {
+  animation: celestial-rotate-reverse 40s linear infinite;
+}
