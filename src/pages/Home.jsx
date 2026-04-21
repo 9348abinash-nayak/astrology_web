@@ -102,14 +102,9 @@ const Home = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.25], [1, 0.95]);
 
-  // Disable parallax on mobile/touch for ultra-smooth performance
-  const yParallax = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -200]);
-  const yParallaxSlow = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -100]);
-  const smoothY = useSpring(yParallax, { 
-    stiffness: 100, 
-    damping: 30,
-    restDelta: 0.1 // Larger delta for better performance
-  });
+  // Use direct transforms for better speed/performance (no spring physics overhead)
+  const yParallax = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -180]);
+  const yParallaxSlow = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -80]);
 
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center overflow-x-hidden">
@@ -213,12 +208,9 @@ const Home = () => {
         </div>
 
         {/* Right side animated horoscope wheel */}
-        <motion.div 
-          variants={itemVariants}
-          className="flex justify-center items-center order-1 lg:order-2"
-        >
+        <div className="relative order-1 lg:order-2 flex justify-center items-center h-[350px] md:h-[600px] w-full">
           <ZodiacWheel />
-        </motion.div>
+        </div>
       </motion.section>
 
       {!isMobile && (

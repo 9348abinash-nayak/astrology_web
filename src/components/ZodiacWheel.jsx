@@ -79,7 +79,7 @@ const ZodiacWheel = () => {
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="w-8 h-8 md:w-10 md:h-10 text-primary drop-shadow-[0_0_8px_rgba(135,82,0,0.6)]"
+                  className="w-8 h-8 md:w-10 md:h-10 text-primary"
                 >
                   <path d={sign.path} />
                 </svg>

@@ -78,6 +78,16 @@ body { top: 0 !important; }
   will-change: transform;
 }
 
+section, main > div {
+  content-visibility: auto;
+  contain-intrinsic-size: 1000px; /* Placeholder height to avoid layout jumps */
+}
+
+/* Optimization for specific sections */
+#horoscope, #contact, .expert-profile {
+  contain: layout;
+}
+
 @keyframes celestial-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
