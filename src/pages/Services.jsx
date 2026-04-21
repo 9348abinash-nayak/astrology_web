@@ -59,13 +59,15 @@ const Services = () => {
         >
           ଦିବ୍ୟ ଅନୁଭୂତି
         </motion.div>
-        <h1 className="text-4xl md:text-7xl font-bold text-on-surface leading-tight max-w-4xl font-headline">
-          ଗ୍ରହ ନକ୍ଷେତ୍ର ଆଲୋକରେ ନିଜ ଜୀବନ <br/>ପଥକୁ <motion.span 
-            animate={{ opacity: [0.6, 1, 0.6] }}
+        <motion.h1 
+          className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.2] text-on-surface font-headline py-1"
+        >
+          ଆମର ପରମ୍ପରା ଓ <br /><motion.span
+            animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 3, repeat: Infinity }}
-            className="text-primary italic"
-          >ଉଦ୍ଭାସିତ କରନ୍ତୁ।</motion.span>
-        </h1>
+            className="text-primary italic inline-block py-1"
+          >ଦିବ୍ୟ ଜ୍ଞାନ</motion.span>
+        </motion.h1>
         <p className="mt-8 text-xl text-on-surface-variant max-w-2xl leading-relaxed">
           ପ୍ରାଚୀନ ବୈଦିକ ଜ୍ଞାନର ଆଲୋକରେ ଜୀବନର ଜଟିଳତା ଦୂର କରି ଶାନ୍ତି ଓ ସମୃଦ୍ଧି ପ୍ରାପ୍ତ କରନ୍ତୁ। ଆମର ସେବାଗୁଡ଼ିକ ଆପଣଙ୍କୁ ସ୍ପଷ୍ଟ ମାର୍ଗଦର୍ଶନ ଦେବା ପାଇଁ ଉଦ୍ଦିଷ୍ଟ।
         </p>
@@ -86,7 +88,7 @@ const Services = () => {
               boxShadow: "0 40px 80px -15px rgba(135, 82, 0, 0.15)",
               borderColor: "rgba(135, 82, 0, 0.3)"
             }}
-            className={`group flex flex-col items-start p-6 sm:p-10 ${service.bg} rounded-[2rem] md:rounded-[2.5rem] transition-all duration-700 relative overflow-hidden border border-outline-variant/10 shadow-sm`}
+            className={`group flex flex-col items-start p-6 sm:p-10 ${service.bg} rounded-[2rem] md:rounded-[2.5rem] transition-all duration-700 relative overflow-visible border border-outline-variant/10 shadow-sm`}
             style={{ transformZ: 0 }}
           >
             <motion.div 

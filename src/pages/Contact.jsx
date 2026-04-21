@@ -30,11 +30,11 @@ const Contact = () => {
           className="mb-20 text-center md:text-left"
         >
           <span className="text-primary font-medium tracking-[0.2em] uppercase text-xs mb-4 block">ନିଜ ଭାଗ୍ୟ ସହ ସଂଯୋଗ ସ୍ଥାପନ କରନ୍ତୁ</span>
-          <h1 className="text-4xl md:text-7xl font-bold text-on-surface mb-6 leading-tight font-headline">
+          <h1 className="text-4xl md:text-7xl font-bold text-on-surface mb-6 leading-[1.2] font-headline py-1">
             ସମ୍ପର୍କ <motion.span 
               animate={{ opacity: [0.6, 1, 0.6] }}
               transition={{ duration: 4, repeat: Infinity }}
-              className="italic text-primary font-light"
+              className="italic text-primary font-light inline-block py-1"
             >କରନ୍ତୁ</motion.span>
           </h1>
           <p className="text-lg text-on-surface-variant max-w-2xl leading-relaxed">

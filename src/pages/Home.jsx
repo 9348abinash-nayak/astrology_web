@@ -99,6 +99,9 @@ const Home = () => {
   };
 
   const { scrollYProgress } = useScroll();
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 0.25], [1, 0.95]);
+
   // Disable parallax on mobile/touch for ultra-smooth performance
   const yParallax = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -200]);
   const yParallaxSlow = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -100]);
@@ -122,6 +125,12 @@ const Home = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
+        style={{ 
+          opacity: heroOpacity, 
+          scale: heroScale,
+          willChange: 'opacity, transform',
+          transformZ: 0 
+        }}
         className="relative z-10 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-32 md:pt-48"
       >
         <div className="text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1 w-full">
@@ -130,8 +139,8 @@ const Home = () => {
             <span className="text-primary font-bold tracking-[0.25em] text-sm md:text-base uppercase mb-4 block drop-shadow-sm font-headline lg:text-left text-center w-full">
               {t.hero.branding}
             </span>
-            <motion.div variants={itemVariants} className="mb-4 w-full">
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent lg:text-left text-center">
+            <motion.div variants={itemVariants} className="mb-4 w-full py-2">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent lg:text-left text-center leading-[1.1] pb-2">
                 {t.hero.title}
               </h1>
             </motion.div>
@@ -153,7 +162,7 @@ const Home = () => {
             </motion.div>
           </motion.div>
 
-          <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-headline text-on-surface mb-6 tracking-tight leading-normal py-2 lg:text-left text-center w-full">
+          <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-headline text-on-surface mb-6 tracking-tight leading-[1.3] py-2 lg:text-left text-center w-full">
             {lang === 'en' ? 'Know Your' : lang === 'hi' ? 'अपना' : 'ନିଜର'} <br className="hidden lg:block" />
             <motion.span
               animate={{
@@ -167,7 +176,7 @@ const Home = () => {
                 WebkitTextFillColor: 'transparent',
                 filter: 'drop-shadow(0 2px 4px rgba(135, 82, 0, 0.2))'
               }}
-              className="italic font-serif font-bold lg:text-left text-center"
+              className="italic font-serif font-bold lg:text-left text-center inline-block py-1"
             >
               {lang === 'en' ? 'Destiny' : lang === 'hi' ? 'भाग्य जानें' : 'ଭାଗ୍ୟ ଜାଣନ୍ତୁ'}
             </motion.span>
@@ -236,7 +245,7 @@ const Home = () => {
       {/* Expert Profile Section */}
       <section className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-20 mt-10 w-full">
         <SectionScrollReveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center bg-white/40 backdrop-blur-xl rounded-[2rem] md:rounded-[3rem] p-6 sm:p-10 md:p-16 border border-white/20 shadow-2xl overflow-hidden">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center bg-white/40 backdrop-blur-xl rounded-[2rem] md:rounded-[3rem] p-6 sm:p-10 md:p-16 border border-white/20 shadow-2xl overflow-visible">
             <motion.div
               style={{ y: yParallaxSlow }}
               className="relative"

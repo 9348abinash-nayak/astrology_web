@@ -88,12 +88,12 @@ const About = () => {
               variants={fadeInVariants}
               initial="hidden"
               animate="visible"
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-on-surface font-headline"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.2] text-on-surface font-headline py-1"
             >
               ଆମର ପରମ୍ପରା ଓ <br /><motion.span
                 animate={{ opacity: [0.7, 1, 0.7] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="text-primary italic"
+                className="text-primary italic inline-block py-1"
               >ଦିବ୍ୟ ଜ୍ଞାନ</motion.span>
             </motion.h1>
           </header>

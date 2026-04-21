@@ -4,18 +4,18 @@ import { useLanguage } from '../App';
 import { fetchDailyHoroscopeFromProkerala } from '../utils/prokerala';
 
 const zodiacSigns = [
-  { id: 'aries', en: 'Aries', or: 'ମେଷ', hi: 'मेष', icon: '♈' },
-  { id: 'taurus', en: 'Taurus', or: 'ବୃଷ', hi: 'वृष', icon: '♉' },
-  { id: 'gemini', en: 'Gemini', or: 'ମିଥୁନ', hi: 'मिथुन', icon: '♊' },
-  { id: 'cancer', en: 'Cancer', or: 'କର୍କଟ', hi: 'कर्क', icon: '♋' },
-  { id: 'leo', en: 'Leo', or: 'ସିଂହ', hi: 'सिंह', icon: '♌' },
-  { id: 'virgo', en: 'Virgo', or: 'କନ୍ୟା', hi: 'कन्या', icon: '♍' },
-  { id: 'libra', en: 'Libra', or: 'ତୁଳା', hi: 'तुला', icon: '♎' },
-  { id: 'scorpio', en: 'Scorpio', or: 'ବିଛା', hi: 'वृश्चिक', icon: '♏' },
-  { id: 'sagittarius', en: 'Sagittarius', or: 'ଧନୁ', hi: 'धनु', icon: '♐' },
-  { id: 'capricorn', en: 'Capricorn', or: 'ମକର', hi: 'मकर', icon: '♑' },
-  { id: 'aquarius', en: 'Aquarius', or: 'କୁମ୍ଭ', hi: 'कुंभ', icon: '♒' },
-  { id: 'pisces', en: 'Pisces', or: 'ମୀନ', hi: 'मीन', icon: '♓' },
+  { id: 'aries', en: 'Aries', or: 'ମେଷ', hi: 'मेष', path: 'M7 14C7 11 9 9 12 9C15 9 17 11 17 14C17 17 15 19 12 19V22M12 9V5' },
+  { id: 'taurus', en: 'Taurus', or: 'ବୃଷ', hi: 'वृष', path: 'M12 22C15.866 22 19 18.866 19 15C19 11.134 15.866 8 12 8C8.13401 8 5 11.134 5 15C5 18.866 8.13401 22 12 22ZM12 8C12 4 10 2 8 2M12 8C12 4 14 2 16 2' },
+  { id: 'gemini', en: 'Gemini', or: 'ମିଥୁନ', hi: 'मिथुन', path: 'M8 4V20M16 4V20M4 4H20M4 20H20' },
+  { id: 'cancer', en: 'Cancer', or: 'କର୍କଟ', hi: 'कर्क', path: 'M8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12M16 12C16 14.2091 14.2091 16 12 16C9.79086 16 8 14.2091 8 12ZM16 12C19 12 21 10 21 7C21 4 19 2 16 2C13 2 11 4 11 7M8 12C5 12 3 14 3 17C3 20 5 22 8 22C11 22 13 20 13 17' },
+  { id: 'leo', en: 'Leo', or: 'ସିଂହ', hi: 'सिंह', path: 'M6 16C6 13 8 11 11 11C14 11 16 13 16 16C16 19 14 21 11 21C8 21 6 18 6 15C6 12 8 9 12 9C16 9 19 12 19 16C19 20 17 22 14 22' },
+  { id: 'virgo', en: 'Virgo', or: 'କନ୍ୟା', hi: 'कन्या', path: 'M6 4V16C6 20 9 22 12 22M10 4V16C10 20 13 22 16 22M14 4V16C14 20 17 22 20 22C23 22 25 20 25 16' },
+  { id: 'libra', en: 'Libra', or: 'ତୁଳା', hi: 'तुला', path: 'M4 20H20M5 16H19M12 16V10C12 7.79086 10.2091 6 8 6C5.79086 6 4 7.79086 4 10V16M12 16V10C12 7.79086 13.7909 6 16 6C18.2091 6 20 7.79086 20 10V16' },
+  { id: 'scorpio', en: 'Scorpio', or: 'ବିଛା', hi: 'वृश्चिक', path: 'M4 4V16C4 20 7 22 10 22M8 4V16C8 20 11 22 14 22M12 4V16C12 20 15 22 18 22L21 24' },
+  { id: 'sagittarius', en: 'Sagittarius', or: 'ଧନୁ', hi: 'धनु', path: 'M4 20L20 4M20 4H14M20 4V10M11 11L14 14' },
+  { id: 'capricorn', en: 'Capricorn', or: 'ମକର', hi: 'मकर', path: 'M6 4V16C6 20 9 22 12 22M10 4V16C10 20 13 22 16 22L20 26' },
+  { id: 'aquarius', en: 'Aquarius', or: 'କୁମ୍ଭ', hi: 'कुंभ', path: 'M4 8L8 4L12 8L16 4L20 8M4 16L8 12L12 16L16 12L20 16' },
+  { id: 'pisces', en: 'Pisces', or: 'ମୀନ', hi: 'मीन', path: 'M4 4C8 12 8 12 4 20M20 4C16 12 16 12 20 20M4 12H20' },
 ];
 
 const HoroscopeSection = () => {
@@ -134,7 +134,17 @@ const HoroscopeSection = () => {
                 : 'bg-white/50 border-primary/10 text-on-surface hover:border-primary/40'
               }`}
             >
-              <span className="text-3xl mb-2">{sign.icon}</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className={`w-10 h-10 mb-2 ${selectedSign?.id === sign.id ? 'text-on-primary' : 'text-primary'}`}
+              >
+                <path d={sign.path} />
+              </svg>
               <span className="text-xs font-bold uppercase tracking-tighter">
                 {lang === 'or' ? sign.or : lang === 'hi' ? sign.hi : sign.en}
               </span>
@@ -177,17 +187,35 @@ const HoroscopeSection = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="max-w-4xl mx-auto bg-gradient-to-br from-white to-primary/5 rounded-[3rem] p-8 md:p-12 shadow-2xl border border-primary/20 relative overflow-hidden"
+              className="max-w-4xl mx-auto bg-gradient-to-br from-white to-primary/5 rounded-[3rem] p-8 md:p-12 shadow-2xl border border-primary/20 relative overflow-visible"
             >
               {/* Background Accent */}
-              <div className="absolute top-0 right-0 p-8 opacity-5 text-9xl select-none">
-                {selectedSign.icon}
+              <div className="absolute top-0 right-0 p-8 opacity-5 select-none">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  className="w-48 h-48 text-primary"
+                >
+                  <path d={selectedSign.path} />
+                </svg>
               </div>
 
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-16 h-16 bg-primary text-on-primary rounded-2xl flex items-center justify-center text-4xl shadow-lg">
-                    {selectedSign.icon}
+                  <div className="w-16 h-16 bg-primary text-on-primary rounded-2xl flex items-center justify-center shadow-lg p-2">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="w-10 h-10"
+                    >
+                      <path d={selectedSign.path} />
+                    </svg>
                   </div>
                   <div>
                     <h3 className="text-3xl font-headline font-bold text-on-surface">
