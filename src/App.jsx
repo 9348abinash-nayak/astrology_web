@@ -72,18 +72,22 @@ function AppContent() {
   });
 
   useEffect(() => {
-    // Detect touch device to optimize performance
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    // Detect touch device or mobile width to completely disable Lenis for performance
+    const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 1024;
+
+    if (isMobileDevice) {
+      window.lenis = null;
+      return;
+    }
 
     const lenis = new Lenis({
-      duration: 1.2, // Slightly faster for responsiveness
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       gestureDirection: 'vertical',
       smoothWheel: true,
-      smoothTouch: false, // Use native touch for better mobile performance
+      smoothTouch: false,
       wheelMultiplier: 1,
-      touchMultiplier: 1.5,
       infinite: false,
     });
 

@@ -87,6 +87,7 @@ const Services = () => {
               borderColor: "rgba(135, 82, 0, 0.3)"
             }}
             className={`group flex flex-col items-start p-6 sm:p-10 ${service.bg} rounded-[2rem] md:rounded-[2.5rem] transition-all duration-700 relative overflow-hidden border border-outline-variant/10 shadow-sm`}
+            style={{ transformZ: 0 }}
           >
             <motion.div 
               whileHover={{ rotate: 360, scale: 1.2 }}

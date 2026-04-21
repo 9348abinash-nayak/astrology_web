@@ -31,7 +31,7 @@ const Navbar = () => {
       <motion.nav 
         style={{
           backgroundColor: 'rgba(251, 249, 245, 1)', 
-          backdropFilter: 'blur(16px)',
+          backdropFilter: window.innerWidth < 768 ? 'none' : 'blur(16px)',
           borderBottom: '1px solid rgba(135, 82, 0, 0.1)'
         }}
         className="fixed top-0 w-full z-[60] flex justify-between items-center px-6 md:px-16 py-2 transition-all duration-500"

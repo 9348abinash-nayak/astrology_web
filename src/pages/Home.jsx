@@ -46,14 +46,14 @@ const SectionScrollReveal = ({ children }) => {
 
 const GlowingNumber = ({ children, className = "" }) => (
   <motion.span
-    animate={{
+    animate={window.innerWidth > 768 ? {
       backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
       filter: [
         'drop-shadow(0 0 2px rgba(212, 137, 36, 0.4))',
         'drop-shadow(0 0 10px rgba(212, 137, 36, 0.8))',
         'drop-shadow(0 0 2px rgba(212, 137, 36, 0.4))'
       ]
-    }}
+    } : {}}
     transition={{
       duration: 3,
       repeat: Infinity,
@@ -111,11 +111,9 @@ const Home = () => {
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center overflow-x-hidden">
       {/* Celestial Background Elements */}
-      <motion.div
-        animate={!isMobile ? { opacity: [0.05, 0.1, 0.05], scale: [1, 1.05, 1] } : { opacity: 0.05 }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+      <div
         className="absolute inset-0 celestial-glow pointer-events-none"
-      ></motion.div>
+      ></div>
       {!isMobile && <div className="absolute inset-0 grain-texture pointer-events-none"></div>}
 
 
@@ -214,23 +212,26 @@ const Home = () => {
         </motion.div>
       </motion.section>
 
-      {/* Floating Abstract Element */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.3, 0.2]
-        }}
-        transition={{ duration: 15, repeat: Infinity }}
-        className="absolute -bottom-20 -left-20 w-96 h-96 bg-surface-container-low rounded-full mix-blend-multiply filter blur-3xl"
-      ></motion.div>
-      <motion.div
-        animate={{
-          scale: [1.2, 1, 1.2],
-          opacity: [0.1, 0.2, 0.1]
-        }}
-        transition={{ duration: 18, repeat: Infinity }}
-        className="absolute -top-20 -right-20 w-96 h-96 bg-secondary-container rounded-full mix-blend-multiply filter blur-3xl"
-      ></motion.div>
+      {!isMobile && (
+        <>
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.2, 0.3, 0.2]
+            }}
+            transition={{ duration: 15, repeat: Infinity }}
+            className="absolute -bottom-20 -left-20 w-96 h-96 bg-surface-container-low rounded-full mix-blend-multiply filter blur-3xl pointer-events-none"
+          ></motion.div>
+          <motion.div
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.1, 0.2, 0.1]
+            }}
+            transition={{ duration: 18, repeat: Infinity }}
+            className="absolute -top-20 -right-20 w-96 h-96 bg-secondary-container rounded-full mix-blend-multiply filter blur-3xl pointer-events-none"
+          ></motion.div>
+        </>
+      )}
 
       {/* Expert Profile Section */}
       <section className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-20 mt-10 w-full">

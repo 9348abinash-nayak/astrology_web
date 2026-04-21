@@ -127,6 +127,7 @@ const HoroscopeSection = () => {
               whileHover={{ y: -5, scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => fetchHoroscope(sign)}
+              style={{ transform: 'translateZ(0)' }}
               className={`flex flex-col items-center p-4 rounded-2xl transition-all border ${
                 selectedSign?.id === sign.id 
                 ? 'bg-primary text-on-primary border-primary shadow-lg' 

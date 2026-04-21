@@ -50,13 +50,13 @@ const ZodiacWheel = () => {
 
       {/* Rotating Wheel */}
       <motion.div
-        animate={{ rotate: 360 }}
+        animate={radius > 120 ? { rotate: 360 } : {}}
         transition={{
           duration: 40,
           repeat: Infinity,
           ease: "linear",
         }}
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', transformZ: 0 }}
         className="relative w-full h-full border-2 border-primary/20 rounded-full flex items-center justify-center"
       >
         {/* Inner Rings */}
@@ -75,13 +75,13 @@ const ZodiacWheel = () => {
               }}
             >
               <motion.div
-                animate={{ rotate: -360 - angle }}
+                animate={radius > 120 ? { rotate: -360 - angle } : { rotate: -angle }}
                 transition={{
                   duration: 40,
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                style={{ willChange: 'transform' }}
+                style={{ willChange: 'transform', transformZ: 0 }}
                 className="text-2xl md:text-3xl lg:text-4xl text-primary flex items-center justify-center w-10 h-10"
               >
                 <span style={{ filter: 'drop-shadow(0 0 6px rgba(212, 137, 36, 0.6))', fontFamily: 'serif' }}>
