@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import ajaya from "../assets/ajaya.png"
 import { useLanguage } from '../App';
+
 import HoroscopeSection from '../components/HoroscopeSection';
 
 const SplitText = ({ children, className }) => {
@@ -70,19 +71,30 @@ const GlowingNumber = ({ children, className = "" }) => (
   </motion.span>
 );
 
+import ZodiacWheel from '../components/ZodiacWheel';
+
 const Home = () => {
   const { lang, t } = useLanguage();
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.3 }
+      transition: { staggerChildren: isMobile ? 0.05 : 0.1, delayChildren: 0.3 }
     }
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } }
   };
 
   const { scrollYProgress } = useScroll();
@@ -91,118 +103,104 @@ const Home = () => {
   const smoothY = useSpring(yParallax, { stiffness: 100, damping: 30 });
 
   return (
-    <div className="relative min-h-screen flex flex-col justify-center items-center overflow-hidden">
+    <div className="relative min-h-screen flex flex-col justify-center items-center overflow-x-hidden">
       {/* Celestial Background Elements */}
       <motion.div
-        animate={{ opacity: [0.05, 0.1, 0.05], scale: [1, 1.05, 1] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 celestial-glow"
+        animate={!isMobile ? { opacity: [0.05, 0.1, 0.05], scale: [1, 1.05, 1] } : { opacity: 0.05 }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-0 celestial-glow pointer-events-none"
       ></motion.div>
-      <div className="absolute inset-0 grain-texture"></div>
+      {!isMobile && <div className="absolute inset-0 grain-texture pointer-events-none"></div>}
 
-      {/* Decorative Star Accents with Parallax */}
-      <motion.div
-        style={{ y: smoothY }}
-        animate={{
-          rotate: [0, 15, 0],
-          opacity: [0.1, 0.3, 0.1]
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[15%] left-[10%] transform"
-      >
-        <span className="material-symbols-outlined text-primary text-6xl">star</span>
-      </motion.div>
-
-      <motion.div
-        style={{ y: useSpring(useTransform(scrollYProgress, [0, 1], [0, -300])) }}
-        animate={{
-          rotate: [0, -15, 0],
-          opacity: [0.1, 0.2, 0.1]
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute top-[60%] right-[15%] transform"
-      >
-        <span className="material-symbols-outlined text-primary text-8xl">auto_awesome</span>
-      </motion.div>
 
       {/* Hero Content Section */}
       <motion.section
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center pt-32 md:pt-48"
+        className="relative z-10 px-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center pt-32 md:pt-48"
       >
-        <motion.div variants={itemVariants} className="mb-8">
-          <div className="w-16 h-1 bg-gradient-to-r from-transparent via-primary to-transparent mx-auto mb-6 rounded-full shadow-[0_0_8px_rgba(135,82,0,0.4)]"></div>
-          <span className="text-primary font-bold tracking-[0.25em] text-sm md:text-base uppercase mb-4 block drop-shadow-sm font-headline text-center">
-            {t.hero.branding}
-          </span>
-          <motion.div variants={itemVariants} className="mb-4">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent text-center">
-              {t.hero.title}
-            </h1>
+        <div className="text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1 w-full">
+          <motion.div variants={itemVariants} className="mb-8 w-full flex flex-col items-center lg:items-start">
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-primary to-transparent lg:from-primary lg:via-primary lg:to-transparent mb-6 rounded-full shadow-[0_0_8px_rgba(135,82,0,0.4)] lg:ml-0 mx-auto"></div>
+            <span className="text-primary font-bold tracking-[0.25em] text-sm md:text-base uppercase mb-4 block drop-shadow-sm font-headline lg:text-left text-center w-full">
+              {t.hero.branding}
+            </span>
+            <motion.div variants={itemVariants} className="mb-4 w-full">
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-orange-600 to-yellow-500 bg-clip-text text-transparent lg:text-left text-center">
+                {t.hero.title}
+              </h1>
+            </motion.div>
+            <motion.div
+              variants={itemVariants}
+              className="mt-6 flex flex-col items-center lg:items-start justify-center lg:justify-start gap-1.5 w-full"
+            >
+              <div className="flex items-center gap-2 text-on-surface">
+                <span className="material-symbols-outlined text-primary text-xl">person</span>
+                <span className="text-2xl md:text-3xl font-bold font-headline">{t.hero.name}</span>
+              </div>
+              <div className="flex items-center gap-2 text-primary/80 text-sm md:text-base font-medium mt-1">
+                <span className="material-symbols-outlined text-sm">location_on</span>
+                <span>{t.hero.location} - ୭୫୬୧୧୨</span>
+              </div>
+              <div className="flex items-center gap-2 text-primary/90 text-base font-medium mt-2">
+                {t.hero.phone}: <GlowingNumber className="text-xl md:text-2xl font-bold">୭୬୮୩୮୫୩୩୦୧</GlowingNumber>
+              </div>
+            </motion.div>
           </motion.div>
-          <motion.div
-            variants={itemVariants}
-            className="mt-6 flex flex-col items-center justify-center gap-1.5"
-          >
-            <div className="flex items-center justify-center gap-2 text-on-surface">
-              <span className="material-symbols-outlined text-primary text-xl">person</span>
-              <span className="text-2xl md:text-3xl font-bold font-headline">{t.hero.name}</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 text-primary/80 text-sm md:text-base font-medium mt-1">
-              <span className="material-symbols-outlined text-sm">location_on</span>
-              <span>{t.hero.location} - ୭୫୬୧୧୨</span>
-            </div>
-            <div className="flex items-center justify-center gap-2 text-primary/90 text-base font-medium mt-2">
-              {t.hero.phone}: <GlowingNumber className="text-xl md:text-2xl font-bold">୭୬୮୩୮୫୩୩୦୧</GlowingNumber>
-            </div>
+
+          <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-headline text-on-surface mb-6 tracking-tight leading-normal py-2 lg:text-left text-center w-full">
+            {lang === 'en' ? 'Know Your' : lang === 'hi' ? 'अपना' : 'ନିଜର'} <br className="hidden lg:block" />
+            <motion.span
+              animate={{
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+              style={{
+                backgroundImage: 'linear-gradient(90deg, #5d3900, #875200, #d48924, #875200, #5d3900)',
+                backgroundSize: '200% auto',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                filter: 'drop-shadow(0 2px 4px rgba(135, 82, 0, 0.2))'
+              }}
+              className="italic font-serif font-bold lg:text-left text-center"
+            >
+              {lang === 'en' ? 'Destiny' : lang === 'hi' ? 'भाग्य जानें' : 'ଭାଗ୍ୟ ଜାଣନ୍ତୁ'}
+            </motion.span>
+          </motion.h1>
+
+          <motion.p variants={itemVariants} className="text-xl md:text-2xl text-secondary font-light max-w-2xl mb-12 leading-relaxed lg:text-left text-center">
+            {t.hero.subtitle}
+          </motion.p>
+
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 md:gap-6 items-center w-full sm:w-auto">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-full sm:w-auto group relative px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full text-base md:text-lg font-semibold shadow-lg transition-all"
+            >
+              {t.hero.btnJoin}
+            </motion.button>
+            <motion.button
+              whileHover={{ x: 5 }}
+              onClick={() => {
+                const element = document.getElementById('horoscope');
+                element?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="px-8 md:px-10 py-4 md:py-5 text-on-surface-variant font-medium hover:text-primary transition-colors flex items-center gap-2"
+            >
+              {t.hero.btnRashifal}
+              <span className="material-symbols-outlined">arrow_right_alt</span>
+            </motion.button>
           </motion.div>
-        </motion.div>
+        </div>
 
-        <motion.h1 variants={itemVariants} className="text-3xl md:text-5xl font-headline text-on-surface mb-6 tracking-tight leading-normal py-2">
-          {lang === 'en' ? 'Know Your' : lang === 'hi' ? 'अपना' : 'ନିଜର'} <br />
-          <motion.span
-            animate={{
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-            }}
-            transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
-            style={{
-              backgroundImage: 'linear-gradient(90deg, #5d3900, #875200, #d48924, #875200, #5d3900)',
-              backgroundSize: '200% auto',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              filter: 'drop-shadow(0 2px 4px rgba(135, 82, 0, 0.2))'
-            }}
-            className="italic font-serif font-bold"
-          >
-            {lang === 'en' ? 'Destiny' : lang === 'hi' ? 'भाग्य जानें' : 'ଭାଗ୍ୟ ଜାଣନ୍ତୁ'}
-          </motion.span>
-        </motion.h1>
-
-        <motion.p variants={itemVariants} className="text-xl md:text-2xl text-secondary font-light max-w-2xl mb-12 leading-relaxed">
-          {t.hero.subtitle}
-        </motion.p>
-
-        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 md:gap-6 items-center w-full sm:w-auto">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full sm:w-auto group relative px-8 md:px-10 py-4 md:py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full text-base md:text-lg font-semibold shadow-lg transition-all"
-          >
-            {t.hero.btnJoin}
-          </motion.button>
-          <motion.button
-            whileHover={{ x: 5 }}
-            onClick={() => {
-              const element = document.getElementById('horoscope');
-              element?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="px-8 md:px-10 py-4 md:py-5 text-on-surface-variant font-medium hover:text-primary transition-colors flex items-center gap-2"
-          >
-            {t.hero.btnRashifal}
-            <span className="material-symbols-outlined">arrow_right_alt</span>
-          </motion.button>
+        {/* Right side animated horoscope wheel */}
+        <motion.div 
+          variants={itemVariants}
+          className="flex justify-center items-center order-1 lg:order-2"
+        >
+          <ZodiacWheel />
         </motion.div>
       </motion.section>
 
@@ -240,13 +238,6 @@ const Home = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="absolute -bottom-8 -right-8 w-24 h-24 bg-primary rounded-full flex items-center justify-center text-on-primary border-4 border-white shadow-lg"
-              >
-                <span className="material-symbols-outlined text-4xl">verified_user</span>
-              </motion.div>
             </motion.div>
 
             <motion.div
