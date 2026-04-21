@@ -2,9 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 @layer base {
   body {
     @apply bg-background text-on-surface font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
@@ -30,3 +57,23 @@ body { top: 0 !important; }
 .goog-te-gadget span { display: none !important; }
 .goog-te-gadget .goog-te-combo { margin: 0; padding: 6px 12px; border-radius: 9999px; border: 1px solid rgba(135, 82, 0, 0.3); background: rgba(255, 255, 255, 0.9); font-family: inherit; color: #4a3419; cursor: pointer; outline: none; font-weight: 600; font-size: 14px; box-shadow: 0 4px 6px -1px rgba(135, 82, 0, 0.1); transition: all 0.3s; }
 .goog-te-gadget .goog-te-combo:focus { border-color: rgba(135, 82, 0, 0.6); box-shadow: 0 4px 12px -2px rgba(135, 82, 0, 0.2); }
+
+/* Mobile & Performance Optimizations */
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  .backdrop-blur-xl, .backdrop-blur-md {
+    backdrop-filter: blur(8px) !important; /* Reduce blur depth for mobile CPU/GPU */
+    -webkit-backdrop-filter: blur(8px) !important;
+  }
+
+  body {
+    overscroll-behavior-y: none;
+  }
+}
+
+.lenis-smooth {
+  will-change: transform;
+}

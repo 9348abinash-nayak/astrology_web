@@ -1,6 +1,6 @@
 import React, { useEffect, createContext, useContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import Layout from './components/Layout';
@@ -40,7 +40,11 @@ const PageWrapper = ({ children }) => (
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
   return null;
 }
@@ -60,22 +64,54 @@ function AppRoutes() {
 }
 
 function AppContent() {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   useEffect(() => {
+    // Detect touch device to optimize performance
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
     const lenis = new Lenis({
-      autoRaf: true,
-      duration: 1.2,
+      duration: 1.2, // Slightly faster for responsiveness
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
+      direction: 'vertical',
+      gestureDirection: 'vertical',
       smoothWheel: true,
+      smoothTouch: false, // Use native touch for better mobile performance
       wheelMultiplier: 1,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5,
+      infinite: false,
     });
-    return () => lenis.destroy();
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    window.lenis = lenis;
+
+    return () => {
+      lenis.destroy();
+      window.lenis = null;
+    };
   }, []);
 
   return (
     <Router>
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-primary via-primary-container to-primary origin-left z-[100] pointer-events-none"
+        style={{ 
+          scaleX,
+          transformZ: 0, // Force GPU acceleration
+          willChange: 'transform'
+        }}
+      />
       <Layout>
         <ScrollToTop />
         <AppRoutes />

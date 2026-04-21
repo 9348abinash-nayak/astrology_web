@@ -37,6 +37,7 @@ const SectionScrollReveal = ({ children }) => {
       initial={{ opacity: 0, y: 50 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      style={{ willChange: 'transform, opacity', transformZ: 0 }}
     >
       {children}
     </motion.div>
@@ -98,9 +99,14 @@ const Home = () => {
   };
 
   const { scrollYProgress } = useScroll();
-  const yParallax = useTransform(scrollYProgress, [0, 1], [0, -200]);
-  const yParallaxSlow = useTransform(scrollYProgress, [0, 1], [0, -100]);
-  const smoothY = useSpring(yParallax, { stiffness: 100, damping: 30 });
+  // Disable parallax on mobile/touch for ultra-smooth performance
+  const yParallax = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -200]);
+  const yParallaxSlow = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -100]);
+  const smoothY = useSpring(yParallax, { 
+    stiffness: 100, 
+    damping: 30,
+    restDelta: 0.1 // Larger delta for better performance
+  });
 
   return (
     <div className="relative min-h-screen flex flex-col justify-center items-center overflow-x-hidden">
@@ -185,7 +191,11 @@ const Home = () => {
               whileHover={{ x: 5 }}
               onClick={() => {
                 const element = document.getElementById('horoscope');
-                element?.scrollIntoView({ behavior: 'smooth' });
+                if (window.lenis) {
+                  window.lenis.scrollTo(element);
+                } else {
+                  element?.scrollIntoView({ behavior: 'smooth' });
+                }
               }}
               className="px-8 md:px-10 py-4 md:py-5 text-on-surface-variant font-medium hover:text-primary transition-colors flex items-center gap-2"
             >
@@ -231,7 +241,7 @@ const Home = () => {
               className="relative"
             >
               <div className="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl"></div>
-              <div className="relative aspect-square md:aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white/50 shadow-xl">
+              <div className="relative aspect-square md:aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white/50 shadow-xl" style={{ willChange: 'transform' }}>
                 <img
                   src={ajaya}
                   alt={t.profile.name}
