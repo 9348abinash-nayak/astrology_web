@@ -1,6 +1,6 @@
 import React, { useEffect, createContext, useContext, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useSpring, LazyMotion, domMax } from 'framer-motion';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 import Layout from './components/Layout';
@@ -123,7 +123,9 @@ function AppContent() {
 function App() {
   return (
     <LanguageProvider>
-      <AppContent />
+      <LazyMotion features={domMax}>
+        <AppContent />
+      </LazyMotion>
     </LanguageProvider>
   );
 }
