@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import image from '../assets/ajaya.png';
 const About = () => {
   const fadeInVariants = {
-    hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
+    hidden: { opacity: 0.4, y: 30, filter: "blur(4px)" },
     visible: (i) => ({
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: { delay: i * 0.15, duration: 1, ease: [0.22, 1, 0.36, 1] }
+      transition: { delay: i * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }
     })
   };
 
@@ -17,10 +17,10 @@ const About = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         {/* Left Column: Image */}
         <motion.div
-          initial={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0.5, x: -40, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="relative order-2 md:order-1"
         >
           <motion.div
@@ -53,10 +53,10 @@ const About = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 1, scale: 1, x: 0 }}
+            initial={{ opacity: 0.5, scale: 0.9, x: -20 }}
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ scale: 1.05, rotate: -2 }}
             className="absolute -bottom-8 -left-8 bg-white/90 backdrop-blur-md p-8 rounded-3xl shadow-2xl flex items-center gap-5 border border-primary/10"
           >
@@ -160,7 +160,7 @@ const About = () => {
       {/* Philosophical Section */}
       <section className="mt-40 grid grid-cols-1 md:grid-cols-3 gap-12">
         <motion.div
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0.5, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
@@ -172,10 +172,10 @@ const About = () => {
           </p>
         </motion.div>
         <motion.div
-          initial={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0.5, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.3, duration: 0.8 }}
+          transition={{ delay: 0.2, duration: 0.8 }}
           whileHover={{ y: -10 }}
           className="bg-surface-container-low p-8 rounded-3xl border-b-4 border-primary/20 transition-all"
         >

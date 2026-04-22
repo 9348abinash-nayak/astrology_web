@@ -11,11 +11,11 @@ const Contact = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 1, y: 0 },
+    hidden: { opacity: 0.5, y: 20 },
     visible: { 
       opacity: 1, 
       y: 0, 
-      transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } 
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } 
     }
   };
 
@@ -24,7 +24,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Page Header */}
         <motion.div 
-          initial={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0.5, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mb-20 text-center md:text-left"
@@ -45,10 +45,10 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Contact Form Section */}
           <motion.div 
-            initial={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            initial={{ opacity: 0.5, x: -30, filter: "blur(8px)" }}
             whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-7 bg-white/40 backdrop-blur-xl rounded-[2rem] md:rounded-[3rem] p-6 md:p-12 shadow-2xl border border-white/20"
           >
             <motion.div 
@@ -89,7 +89,7 @@ const Contact = () => {
           <div className="lg:col-span-5 space-y-6">
             {/* Image Card */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0.5, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               className="relative rounded-[2rem] overflow-hidden aspect-[4/3] group shadow-xl"
@@ -120,7 +120,7 @@ const Contact = () => {
               ].map((item, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0.5, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.4 + i * 0.1 }}
@@ -135,7 +135,7 @@ const Contact = () => {
                 </motion.div>
               ))}
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0.5, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.6 }}

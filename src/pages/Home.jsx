@@ -34,9 +34,10 @@ const SectionScrollReveal = ({ children }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 1, y: 0 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0.6, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       style={{ willChange: 'transform, opacity', transformZ: 0 }}
     >
       {children}
@@ -249,9 +250,10 @@ const Home = () => {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0.3, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="space-y-6"
             >
               <span className="text-primary font-medium tracking-[0.2em] text-xs md:text-sm uppercase">{t.profile.badge}</span>
@@ -296,12 +298,12 @@ const Home = () => {
               {t.services.items.map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 1, y: 0, scale: 1 }}
+                  initial={{ opacity: 0.5, y: 30, scale: 0.98 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{
                     delay: idx * 0.1,
-                    duration: 0.8,
+                    duration: 0.6,
                     ease: [0.22, 1, 0.36, 1]
                   }}
                   whileHover={{

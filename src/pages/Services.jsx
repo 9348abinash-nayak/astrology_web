@@ -34,12 +34,12 @@ const Services = () => {
   ];
 
   const cardVariants = {
-    hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
+    hidden: { opacity: 0.5, y: 30, filter: "blur(4px)" },
     visible: (i) => ({
       opacity: 1,
       y: 0,
       filter: "blur(0px)",
-      transition: { delay: i * 0.15, duration: 1, ease: [0.22, 1, 0.36, 1] }
+      transition: { delay: i * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }
     })
   };
 
@@ -47,13 +47,13 @@ const Services = () => {
     <main className="pt-32 md:pt-40 pb-20 px-6 max-w-7xl mx-auto">
       {/* Hero Heading */}
       <motion.header 
-        initial={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0.5, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.8 }}
         className="mb-20"
       >
         <motion.div 
-          initial={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0.5, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="inline-block px-4 py-1 mb-6 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-semibold tracking-widest uppercase"
         >
@@ -126,10 +126,10 @@ const Services = () => {
 
       {/* Vastu Puja Special Section */}
       <motion.section 
-        initial={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0.5, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.8 }}
         className="mt-28 mb-10"
       >
         <div className="relative overflow-hidden bg-gradient-to-br from-surface-container-lowest via-[#FFF9E6] to-[#FFEFE0] border border-primary/20 rounded-[2.5rem] p-8 md:p-14 shadow-[0_20px_60px_-15px_rgba(135,82,0,0.1)] group">
@@ -215,10 +215,10 @@ const Services = () => {
       {/* Asymmetric Decorative Section */}
       <section className="mt-32 flex flex-col md:flex-row items-center gap-16">
         <motion.div 
-          initial={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0.5, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
           className="w-full md:w-1/2 relative"
         >
           <motion.div 
@@ -238,10 +238,10 @@ const Services = () => {
           ></motion.div>
         </motion.div>
         <motion.div 
-          initial={{ opacity: 0, x: 50 }}
+          initial={{ opacity: 0.5, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 0.8 }}
           className="w-full md:w-1/2"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-6 text-on-surface font-headline">ପବିତ୍ର ପରମ୍ପରା, ଆଧୁନିକ ସ୍ପଷ୍ଟତା।</h2>
