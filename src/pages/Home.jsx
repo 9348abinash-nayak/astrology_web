@@ -34,7 +34,7 @@ const SectionScrollReveal = ({ children }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 1, y: 0 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       style={{ willChange: 'transform, opacity', transformZ: 0 }}
@@ -99,8 +99,6 @@ const Home = () => {
   };
 
   const { scrollYProgress } = useScroll();
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.25], [1, 0.95]);
 
   // Use direct transforms for better speed/performance (no spring physics overhead)
   const yParallax = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 0 : -180]);
@@ -121,8 +119,6 @@ const Home = () => {
         initial="hidden"
         animate="visible"
         style={{ 
-          opacity: heroOpacity, 
-          scale: heroScale,
           willChange: 'opacity, transform',
           transformZ: 0 
         }}
@@ -235,7 +231,7 @@ const Home = () => {
       )}
 
       {/* Expert Profile Section */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 py-12 md:py-20 mt-10 w-full">
+      <section className="relative z-10 max-w-6xl mx-auto px-6 md:px-8 pt-12 md:pt-20 pb-4 md:pb-8 mt-10 w-full">
         <SectionScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center bg-white/40 backdrop-blur-xl rounded-[2rem] md:rounded-[3rem] p-6 sm:p-10 md:p-16 border border-white/20 shadow-2xl overflow-visible">
             <motion.div
@@ -245,15 +241,15 @@ const Home = () => {
               <div className="absolute -inset-4 bg-primary/20 rounded-[3rem] blur-2xl"></div>
               <div className="relative aspect-square md:aspect-[4/5] rounded-[2.5rem] overflow-hidden border-8 border-white/50 shadow-xl" style={{ willChange: 'transform' }}>
                 <img
-                  src={ajaya}
-                  alt={t.profile.name}
-                  className="w-full h-full object-cover"
+                   src={ajaya}
+                   alt={t.profile.name}
+                   className="w-full h-full object-cover"
                 />
               </div>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
+              initial={{ opacity: 1, x: 0 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="space-y-6"
@@ -289,7 +285,7 @@ const Home = () => {
       </section>
 
       {/* Service Cards Section */}
-      <section className="w-full py-32 bg-surface-container-low relative mt-20 overflow-hidden">
+      <section className="w-full pt-12 md:pt-16 pb-20 md:pb-32 bg-surface-container-low relative mt-0 overflow-hidden">
         <SectionScrollReveal>
           <div className="max-w-7xl mx-auto px-8">
             <div className="text-center mb-12 md:mb-16">
@@ -300,7 +296,7 @@ const Home = () => {
               {t.services.items.map((item, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                  initial={{ opacity: 1, y: 0, scale: 1 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{

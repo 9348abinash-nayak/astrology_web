@@ -34,7 +34,7 @@ const Services = () => {
   ];
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50, filter: "blur(10px)" },
+    hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
     visible: (i) => ({
       opacity: 1,
       y: 0,
@@ -47,13 +47,13 @@ const Services = () => {
     <main className="pt-32 md:pt-40 pb-20 px-6 max-w-7xl mx-auto">
       {/* Hero Heading */}
       <motion.header 
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 1, y: 0 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         className="mb-20"
       >
         <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 1, scale: 1 }}
           animate={{ opacity: 1, scale: 1 }}
           className="inline-block px-4 py-1 mb-6 rounded-full bg-primary-fixed text-on-primary-fixed-variant text-xs font-semibold tracking-widest uppercase"
         >
@@ -126,7 +126,7 @@ const Services = () => {
 
       {/* Vastu Puja Special Section */}
       <motion.section 
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 1, y: 0 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
@@ -215,7 +215,7 @@ const Services = () => {
       {/* Asymmetric Decorative Section */}
       <section className="mt-32 flex flex-col md:flex-row items-center gap-16">
         <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 1, scale: 1 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}

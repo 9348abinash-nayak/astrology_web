@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import image from '../assets/ajaya.png';
 const About = () => {
   const fadeInVariants = {
-    hidden: { opacity: 0, y: 40, filter: "blur(10px)" },
+    hidden: { opacity: 1, y: 0, filter: "blur(0px)" },
     visible: (i) => ({
       opacity: 1,
       y: 0,
@@ -17,7 +17,7 @@ const About = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
         {/* Left Column: Image */}
         <motion.div
-          initial={{ opacity: 0, x: -60, filter: "blur(15px)" }}
+          initial={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
@@ -53,7 +53,7 @@ const About = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, x: -30 }}
+            initial={{ opacity: 1, scale: 1, x: 0 }}
             whileInView={{ opacity: 1, scale: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.5, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -160,7 +160,7 @@ const About = () => {
       {/* Philosophical Section */}
       <section className="mt-40 grid grid-cols-1 md:grid-cols-3 gap-12">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 1, y: 0 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1 }}
@@ -172,7 +172,7 @@ const About = () => {
           </p>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 1, scale: 1 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3, duration: 0.8 }}

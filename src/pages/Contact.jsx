@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 const Contact = () => {
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 1 },
     visible: {
       opacity: 1,
       transition: { staggerChildren: 0.15, delayChildren: 0.4 }
@@ -11,7 +11,7 @@ const Contact = () => {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 1, y: 0 },
     visible: { 
       opacity: 1, 
       y: 0, 
@@ -24,7 +24,7 @@ const Contact = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Page Header */}
         <motion.div 
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="mb-20 text-center md:text-left"
@@ -45,7 +45,7 @@ const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Contact Form Section */}
           <motion.div 
-            initial={{ opacity: 0, x: -50, filter: "blur(15px)" }}
+            initial={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
